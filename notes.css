@@ -35,14 +35,62 @@ body.dark {
     --note-bg: #1b2436; /* Muted dark blue-gray for notes */
     --button-bg: #2a4d9e; /* Neon electric blue for buttons */
     --button-hover-bg: #375fc7; /* Brighter neon blue for hover effects */
-    --text-color: #a6d6f5; /* Cool, glowing cyan text */
+    --text-color: #a6d6f5; /* Cool cyan text */
     --delete-bg: #ff1744; /* Bright neon red for delete buttons */
     --delete-hover-bg: #ff4567; /* Vibrant glowing red for hover */
-    --floating-bg: #3d88ff; /* Glowing neon blue for floating button */
-    --header-footer-bg: #000000; /* Dark green for header and footer in dark mode */
-    --header-footer-text: #a6d6f5; /* Cool cyan for text in dark mode */
-    --border-glow: rgba(61, 136, 255, 0.6); /* Neon glow for borders */
+    --floating-bg: #3d88ff; /* Neon blue for floating button */
+    --header-footer-bg: #000000; /* Pure black for header and footer */
+    --header-footer-text: #a6d6f5; /* Cool cyan for text */
+    --title-bg: #24344d; /* Slightly brighter muted blue-gray for title */
+    --title-border: #375fc7; /* Bright blue for title border */
+    --input-bg: #1b2436; /* Muted dark blue-gray for input fields */
+    --input-border: #2a4d9e; /* Subtle blue for input borders */
+    --label-color: #8395a7; /* Soft grayish blue for labels */
+    --textarea-bg: #1b2436; /* Same as input background for consistency */
+    --textarea-border: #2a4d9e; /* Subtle blue for borders */
 }
+
+label {
+    color: var(--label-color);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+input[type="text"] {
+    background-color: var(--title-bg);
+    color: var(--text-color);
+    border: 1px solid var(--title-border);
+    padding: 0.5rem;
+    border-radius: 4px;
+    width: 100%;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: var(--button-hover-bg);
+    outline: none;
+    box-shadow: 0 0 4px var(--button-hover-bg);
+}
+
+textarea {
+    background-color: var(--textarea-bg);
+    color: var(--text-color);
+    border: 1px solid white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    width: 100%;
+    resize: vertical;
+    min-height: 100px;
+    transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+    border-color: var(--button-hover-bg);
+    outline: none;
+}
+
+
 
 header {
     background-color: var(--header-footer-bg);
@@ -53,6 +101,64 @@ header {
     align-items: center;
     transition: background-color 0.3s;
 }
+
+/* Styling for the note list item */
+.note-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Button group container to hold delete and download buttons next to each other */
+.btn-group {
+    display: flex;
+    gap: 10px;  /* Adds space between the buttons */
+}
+
+/* Styling for delete button */
+.delete-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* Styling for download button */
+.download-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* Optional: Add hover effect for buttons */
+.delete-btn:hover, .download-btn:hover {
+    opacity: 0.7;
+}
+
+/* Additional styling for buttons when clicked */
+.delete-btn:active, .download-btn:active {
+    transform: scale(0.95);
+}
+
+/* Optional: Make buttons larger if needed */
+.delete-btn svg, .download-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Align buttons in the right corner */
+.note-item .btn-group {
+    margin-left: auto; /* Pushes buttons to the right */
+}
+
+/* Optional: Add some padding to the list container */
+#notes-list {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+
 
 header .logo {
     font-size: 1.5rem;
@@ -182,6 +288,8 @@ body.dark #download {
     border-radius: 15px;
     overflow: hidden;
     transition: background-color 0.3s;
+    position: relative;
+    left: 5%;
 }
 
 #sidebar {
@@ -312,7 +420,7 @@ form {
 #note {
     width: 70%;
     padding: 20px;
-    border: ;
+    border: 1px;
     background-color: var(--note-bg);
     display: flex;
     flex-direction: column;

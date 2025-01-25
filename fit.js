@@ -6,7 +6,7 @@ document.getElementById('fitnessForm').addEventListener('submit', function(e) {
     const duration = document.getElementById('duration').value;
     const calories = document.getElementById('calories').value;
 
-    const table = document.getElementById('activityTable').querySelector('tbody');
+    const table = document.getElementById('activityTable').getElementsByTagName('tbody');
 
     const row = table.insertRow();
     row.insertCell(0).textContent = date;

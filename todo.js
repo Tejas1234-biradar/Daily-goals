@@ -3,6 +3,7 @@ function addTask(event, inputId, listId, dateId = null) {
     const taskInput = document.getElementById(inputId);
     const taskText = taskInput.value.trim();
     let taskDate = "";
+ 
     if (dateId) {
       const dateInput = document.getElementById(dateId);
       taskDate = dateInput.value.trim();
@@ -41,3 +42,12 @@ onclick="this.parentElement.parentElement.classList.toggle('completed')"
     addTask(event, 'new-upcoming-task', 'upcoming-task-list', 
 'upcoming-task-date');
   });
+  document.getElementById("toggle").addEventListener('click',()=>{
+    const dark = document.getElementById("toggle");
+    document.body.classList.toggle("dark");
+  })
+//   // Get the toggle button
+// const toggleButton = document.getElementById('toggle');
+
+// Function to toggle dark mode
+

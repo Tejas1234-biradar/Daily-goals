@@ -1,6 +1,9 @@
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Oswald:wght@400&display=swap');
 
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Oswald:wght@400&display=swap');
+
 :root {
     --primary-bg: #ead9e5;
     --secondary-bg: #EFF0D1;
@@ -11,6 +14,8 @@
     --delete-bg: red;
     --delete-hover-bg: darkred;
     --floating-bg: #1e0ce9;
+    --header-footer-bg: #77BA99;
+    --header-footer-text: #EFF0D1;
 }
 
 body {
@@ -18,7 +23,6 @@ body {
     background-color: var(--primary-bg);
     color: var(--text-color);
     margin: 0;
-    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -35,7 +39,70 @@ body.dark {
     --delete-bg: #ff1744; /* Bright neon red for delete buttons */
     --delete-hover-bg: #ff4567; /* Vibrant glowing red for hover */
     --floating-bg: #3d88ff; /* Glowing neon blue for floating button */
+    --header-footer-bg: #000000; /* Dark green for header and footer in dark mode */
+    --header-footer-text: #a6d6f5; /* Cool cyan for text in dark mode */
     --border-glow: rgba(61, 136, 255, 0.6); /* Neon glow for borders */
+}
+
+header {
+    background-color: var(--header-footer-bg);
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--header-footer-text);
+    padding-left: 3rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--header-footer-text);
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 0.5rem;
+}
+
+nav ul li a:hover {
+    background-color: var(--button-hover-bg);
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--header-footer-bg);
+    width: 100%;
+    border-top: 1px solid #ccc;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+footer p {
+    margin: 0;
+    color: var(--header-footer-text);
+}
+
+/* Other styles remain unchanged */
+
+
+/* Dark mode styles for glowing effects */
+body.dark header, body.dark footer {
+    box-shadow: 0 0 15px var(--border-glow);
+}
+
+body.dark header .logo, body.dark footer p {
+    text-shadow: 0 0 10px var(--border-glow);
 }
 
 /* Add glowing effects for a futuristic touch */

@@ -1,4 +1,88 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400&family=Montserrat:wght@200&display=swap');
+:root {
+    --primary-bg: #ead9e5;
+    --secondary-bg: #EFF0D1;
+    --note-bg: #f5f5d6;
+    --button-bg: #796ef0;
+    --button-hover-bg: #D7C0D0;
+    --text-color: #262730;
+    --delete-bg: red;
+    --delete-hover-bg: darkred;
+    --floating-bg: #1e0ce9;
+}
+body.dark {
+    --primary-bg: #0a0f1b; /* Deep black with a slight blue tint */
+    --secondary-bg: #121829; /* Dark slate blue for secondary sections */
+    --note-bg: #1b2436; /* Muted dark blue-gray for notes */
+    --button-bg: #2a4d9e; /* Neon electric blue for buttons */
+    --button-hover-bg: #375fc7; /* Brighter neon blue for hover effects */
+    --text-color: #a6d6f5; /* Cool, glowing cyan text */
+    --delete-bg: #ff1744; /* Bright neon red for delete buttons */
+    --delete-hover-bg: #ff4567; /* Vibrant glowing red for hover */
+    --floating-bg: #3d88ff; /* Glowing neon blue for floating button */
+    --border-glow: rgba(61, 136, 255, 0.6); /* Neon glow for borders */
+}
+body.dark #app {
+    box-shadow: 0 0 20px var(--border-glow);
+}
+
+body.dark #sidebar {
+    border: 2px solid var(--border-glow);
+    box-shadow: 0 0 15px var(--border-glow);
+}
+
+body.dark #newPage {
+    box-shadow: 0 0 10px var(--border-glow);
+}
+
+body.dark #newPage:hover {
+    box-shadow: 0 0 15px var(--button-hover-bg);
+}
+
+body.dark #notes-list li {
+    background-color: var(--secondary-bg);
+    color: var(--text-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px var(--border-glow);
+}
+
+body.dark .delete-btn {
+    box-shadow: 0 0 10px rgba(255, 23, 68, 0.5);
+}
+
+body.dark .delete-btn:hover {
+    box-shadow: 0 0 15px rgba(255, 69, 103, 0.8);
+}
+
+body.dark .floating-button {
+    box-shadow: 0 0 20px var(--floating-bg);
+}
+
+body.dark .floating-button:hover {
+    box-shadow: 0 0 25px var(--button-hover-bg);
+}
+
+/* Subtle text glow */
+body.dark #projectName {
+    text-shadow: 0 0 10px var(--border-glow);
+}
+
+body.dark .note-title {
+    text-shadow: 0 0 8px var(--border-glow);
+}
+
+/* Add gradient borders or details */
+body.dark textarea {
+    border: 2px solid var(--border-glow);
+}
+
+body.dark #search {
+    border: 1px solid var(--border-glow);
+    box-shadow: 0 0 10px var(--border-glow);
+}
+
+body.dark #download {
+    box-shadow: 0 0 10px var(--border-glow);
+}
 
 body {
     font-family: 'Oswald', sans-serif, 'Montserrat', sans-serif;
@@ -195,3 +279,31 @@ footer p {
         transform: translateY(-10px);
     }
 }
+.floating-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.floating-button {
+    background-color: #1e0ce9;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+}
+
+.floating-button:hover {
+    background-color: #D33F49; 
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+

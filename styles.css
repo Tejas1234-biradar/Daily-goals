@@ -129,6 +129,33 @@ footer p {
     margin: 0;
     color: #EFF0D1;
 }
+.floating-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.floating-button {
+  background-color: #1e0ce9;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Oswald', sans-serif;
+}
+
+.floating-button:hover {
+  background-color: #D33F49; 
+  transform: scale(1.1);
+  transition: 0.3s;
+}
 
   
   

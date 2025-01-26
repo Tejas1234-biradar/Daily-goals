@@ -154,7 +154,7 @@ header {
 
 /* Optional: Add some padding to the list container */
 #notes-list {
-    padding: 20px;
+    padding: 10px;
     max-width: 600px;
     margin: auto;
 }
@@ -343,15 +343,31 @@ body.dark #download {
     overflow-y: auto;
     flex-grow: 1;
 }
+.download-btn{
+    background-color:   var(--text-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin-left: 10px;
+    transition: transform 0.3s, background-color 0.3s;   
+}
 
 #notes-list li {
     padding: 10px;
     background-color: white;
     margin-bottom: 10px;
+    width: 20vw;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-family: 'Montserrat', sans-serif;
-    display: flex;
+    display: flex
+;
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.3s;

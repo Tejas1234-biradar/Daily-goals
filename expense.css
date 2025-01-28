@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400&family=Montserrat:wght@200&display=swap');
 :root {
     --primary-bg: #ead9e5;
@@ -9,19 +10,33 @@
     --delete-bg: red;
     --delete-hover-bg: darkred;
     --floating-bg: #1e0ce9;
+    --header-footer-bg: #77BA99;
+    --header-footer-text: #EFF0D1;
+    
 }
+
+
 body.dark {
     --primary-bg: #0a0f1b; /* Deep black with a slight blue tint */
     --secondary-bg: #121829; /* Dark slate blue for secondary sections */
     --note-bg: #1b2436; /* Muted dark blue-gray for notes */
     --button-bg: #2a4d9e; /* Neon electric blue for buttons */
     --button-hover-bg: #375fc7; /* Brighter neon blue for hover effects */
-    --text-color: #a6d6f5; /* Cool, glowing cyan text */
+    --text-color: #a6d6f5; /* Cool cyan text */
     --delete-bg: #ff1744; /* Bright neon red for delete buttons */
     --delete-hover-bg: #ff4567; /* Vibrant glowing red for hover */
-    --floating-bg: #3d88ff; /* Glowing neon blue for floating button */
-    --border-glow: rgba(61, 136, 255, 0.6); /* Neon glow for borders */
+    --floating-bg: #3d88ff; /* Neon blue for floating button */
+    --header-footer-bg: #000000; /* Pure black for header and footer */
+    --header-footer-text: #a6d6f5; /* Cool cyan for text */
+    --title-bg: #24344d; /* Slightly brighter muted blue-gray for title */
+    --title-border: #375fc7; /* Bright blue for title border */
+    --input-bg: #1b2436; /* Muted dark blue-gray for input fields */
+    --input-border: #2a4d9e; /* Subtle blue for input borders */
+    --label-color: #8395a7; /* Soft grayish blue for labels */
+    --textarea-bg: #1b2436; /* Same as input background for consistency */
+    --textarea-border: #2a4d9e; 
 }
+
 body.dark #app {
     box-shadow: 0 0 20px var(--border-glow);
 }
@@ -30,6 +45,7 @@ body.dark #sidebar {
     border: 2px solid var(--border-glow);
     box-shadow: 0 0 15px var(--border-glow);
 }
+
 
 body.dark #newPage {
     box-shadow: 0 0 10px var(--border-glow);
@@ -86,8 +102,8 @@ body.dark #download {
 
 body {
     font-family: 'Oswald', sans-serif, 'Montserrat', sans-serif;
-    background-color: #EFF0D1;
-    color: #262730;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
     display: flex;
@@ -97,7 +113,7 @@ body {
 }
 
 header {
-    background-color: #77BA99;
+    background-color: var(--header-footer-bg);
     padding: 1rem;
     width: 100%;
     display: flex;
@@ -108,9 +124,11 @@ header {
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #EFF0D1;
+
+    color: var(--header-footer-text);
     padding-left: 3rem;
 }
+
 
 nav ul {
     list-style: none;
@@ -118,16 +136,17 @@ nav ul {
     gap: 1rem;
 }
 
+
 nav ul li a {
     text-decoration: none;
-    color: #262730;
+    color: var(--header-footer-text);
     padding: 0.5rem 1rem;
     transition: background-color 0.3s ease;
     border-radius: 0.5rem;
 }
 
 nav ul li a:hover {
-    background-color: #D7C0D0;
+    background-color: var(--button-hover-bg);
 }
 
 main {
@@ -138,6 +157,12 @@ main {
     align-items: center;
     width: 100%;
 }
+h3{
+    color: red;
+}
+option{
+    background-color: var(--text-color);
+}
 
 .columns {
     display: flex;
@@ -147,7 +172,7 @@ main {
 }
 
 .expense-section {
-    background-color: #77BA99;
+    background-color: var(--note-bg);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -162,7 +187,7 @@ main {
 }
 
 .recent-expenses {
-    background-color: #D7C0D0;
+    background-color: var(--note-bg);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -178,14 +203,13 @@ main {
 
 h2, h3, h1 {
     font-family: 'Montserrat', sans-serif;
-    color: #262730;
+    color: var(--text-color);
     text-align: center;
     font-weight: bold;
-
 }
 
 h3 {
-    color: #EFF0D1;
+    color: var(--secondary-bg);
 }
 
 h1 {
@@ -195,6 +219,7 @@ h1 {
 .bounce {
     font-size: 2rem;
     font-weight: bold;
+    color:--text-color ;
     animation: bounce 1.2s infinite;
 }
 
@@ -206,8 +231,8 @@ form {
 
 input, select {
     padding: 0.7rem;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
     border-radius: 0.5rem;
     width: 100%;
     transition: transform 0.3s ease;
@@ -219,8 +244,8 @@ input:hover, select:hover {
 
 button {
     padding: 0.7rem 1.2rem;
-    background-color: #262730;
-    color: #EFF0D1;
+    background-color: var(--button-bg);
+    color: var(--secondary-bg);
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
@@ -228,7 +253,7 @@ button {
 }
 
 button:hover {
-    background-color: #D33F49; /* RED button */;
+    background-color: var(--button-hover-bg);
 }
 
 details {
@@ -238,7 +263,7 @@ details {
 details summary {
     cursor: pointer;
     font-size: 1.2rem;
-    color: #262730;
+    color: var(--text-color);
     margin-bottom: 0.5rem;
 }
 
@@ -248,7 +273,7 @@ aside ul {
 }
 
 aside ul li {
-    background-color: #EFF0D1;
+    background-color: var(--secondary-bg);
     margin-bottom: 0.5rem;
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -258,14 +283,14 @@ aside ul li {
 footer {
     text-align: center;
     padding: 1rem;
-    background-color: #77BA99;
+    background-color: var(--header-footer-bg);
     width: 100%;
     border-top: 1px solid #ccc;
 }
 
 footer p {
     margin: 0;
-    color: #EFF0D1;
+    color: var(--header-footer-text);
 }
 
 @keyframes bounce {
@@ -279,6 +304,7 @@ footer p {
         transform: translateY(-10px);
     }
 }
+
 .floating-container {
     position: fixed;
     bottom: 20px;
@@ -286,7 +312,7 @@ footer p {
 }
 
 .floating-button {
-    background-color: #1e0ce9;
+    background-color: var(--floating-bg);
     color: white;
     width: 60px;
     height: 60px;
@@ -302,8 +328,10 @@ footer p {
 }
 
 .floating-button:hover {
-    background-color: #D33F49; 
+    background-color: var(--button-hover-bg);
     transform: scale(1.1);
     transition: 0.3s;
 }
-
+input{
+    background-color: var(--input-bg);
+}

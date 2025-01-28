@@ -1,5 +1,12 @@
+document.getElementById("toggle-theme").addEventListener('click', function () {
+  const body = document.body;
+  const themeButton = this;
+
+  body.classList.toggle("dark");
+  themeButton.textContent = body.classList.contains("dark") ? "☀️" : "🌙";
+});
 document.getElementById('expenseForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+  e.preventDefault();
   
     const amount = parseFloat(document.getElementById('expenseAmount').value);
     const category = document.getElementById('expenseCategory').value;
@@ -74,6 +81,7 @@ document.getElementById('expenseForm').addEventListener('submit', function(e) {
       }
     });
   }
+
   
   // Initial render of the chart
   renderChart();

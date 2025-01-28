@@ -28,15 +28,18 @@
         <h1>Track Your Expenses</h1>
         <form id="expenseForm">
           <label for="expenseAmount">Amount (₹):</label>
-          <input type="number" id="expenseAmount" placeholder="e.g., 50" required>
+          <input  style="color: var(--text-color);" type="number" id="expenseAmount" placeholder="e.g., 50" required>
 
           <label for="expenseCategory">Category:</label>
           <select id="expenseCategory" required>
-            <option value="Food">Food</option>
-            <option value="Rent">Rent</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Utilities">Utilities</option>
-            <option value="Others">Others</option>
+              
+              <option style="color: var(--button-bg);" class="cata" value="Food">Food</option>
+              <option style="color: var(--button-bg);" class="cata" value="Rent">Rent</option>
+              <option style="color: var(--button-bg);" class="cata" value="Entertainment">Entertainment</option>
+              <option style="color: var(--button-bg);" class="cata" value="Utilities">Utilities</option>
+              <option style="color: var(--button-bg);" class="cata" value="Others">Others</option>
+
+            
           </select>
 
           <button type="submit">Add Expense</button>
@@ -47,12 +50,12 @@
           <ul id="expenseLog"></ul>
         </details>
 
-        <h3>Total Expense: ₹<span id="totalExpense">0</span></h3>
+        <h3 style= "color:var(--text-color);">Total Expense: ₹<span id="totalExpense">0</span></h3>
       </section>
 
-      <aside class="recent-expenses">
+      <aside  class="recent-expenses">
         <h2 class="bounce">Recent Expenses</h2>
-        <canvas id="expenseChart" width="250" height="250"></canvas>
+        <canvas  style="color: red;" id="expenseChart" width="250" height="250"></canvas>
       </aside>
     </div>
   </main>

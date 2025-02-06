@@ -1,99 +1,108 @@
-import User from "./models/users.js";
-import Note from "./models/notes.js";
-import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
-import nodemailer from "nodemailer"; // Import Nodemailer
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import cors from "cors";
+import User from "./models/users.js";
+import Note from "./models/notes.js";
 
-// Connect to MongoDB, specifying the 'users' database
+const app = express();
+const port = 5000;
+
+// Middleware
+app.use(express.json());
+app.use(cors());
+
+// Connect to MongoDB
 await mongoose.connect('mongodb://localhost:27017/users', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
-const app = express();
-const port = 5000;
 
-// Use express.json() to parse JSON bodies
-app.use(express.json());
-app.use(cors());
-
-// Set up Nodemailer transporter
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'goalsdaily884@gmail.com', // Your Gmail address
-        pass: 'Tejas@1306' // Your Gmail password (or App Password if 2FA is enabled)
-    }
-});
-
-// Define the root route to save a new user to the database
-app.post('/user', async (req, res) => {
-    try {
-        const { name, email, mobile } = req.body; // Extract the data from the request body
-        const user = new User({ name, email, mobile, hidden: false });
-        await user.save(); // Save the user to MongoDB
-
-        // Send confirmation email
-        const mailOptions = {
-            from: 'goalsdaily884@gmail.com',
-            to: email,
-            subject: 'Welcome!',
-            text: `Hello ${name},\n\nThank you for registering! We're glad to have you on board.\n\nBest regards,\nYour Team`
-        };
-
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.error("Error sending email:", error);
-                return res.status(500).json({ message: 'User saved but failed to send email' });
-            }
-            console.log('Email sent: ' + info.response);
-            res.json({ message: 'Data added to database and confirmation email sent!' });
-        });
-
-    } catch (error) {
-        console.error("Error saving user:", error);
-        res.status(500).json({ message: 'Error saving user' });
-    }
-});
-
-// Define a route to save a note
 app.post('/note', async (req, res) => {
     try {
-        const { title, desc } = req.body; // Get note data from the request body
+        const { title, desc } = req.body;
 
-        // Validate incoming data
+        // Validate input
         if (!title || !desc) {
             return res.status(400).json({ message: "Title and description are required" });
         }
 
-        // Save note to MongoDB
-        const note = new Note({
-            title,
-            desc,
-            hidden: false,
-        });
-        await note.save();
+        // Create and save the note
+        const newNote = new Note({ title, desc, hidden: false });
+        await newNote.save();
 
-        // Send success response as JSON
-        res.status(200).json({ message: "Note successfully added to the database!" });
+        res.status(201).json({ message: "Note created successfully", note: newNote });
     } catch (error) {
-        console.error("Error saving note:", error.message);
-        res.status(500).json({ message: "Error saving note" });
+        console.error("Error saving note:", error);
+        res.status(500).json({ message: "Internal server error" });
     }
 });
 
+// Route: Fetch all visible notes
 app.get('/note', async (req, res) => {
     try {
-        const notes = await Note.find({ hidden: false }); // Retrieve notes where `hidden` is false
-        res.status(200).json(notes); // Send the notes as a JSON response
+        const notes = await Note.find({ hidden: false }); // Fetch only non-hidden notes
+        res.status(200).json(notes);
     } catch (error) {
-        console.error("Error fetching notes:", error.message);
-        res.status(500).json({ message: "Error fetching notes", error: error.message });
+        console.error("Error fetching notes:", error);
+        res.status(500).json({ message: "Internal server error" });
     }
 });
 
-// Start the server
+// Signup Route
+app.post('/signup', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Check if the user already exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: "Email already exists" });
+        }
+
+        // Hash the password before saving
+        const hashedPassword = await bcrypt.hash(password, 10);
+        
+        const newUser = new User({ email, password: hashedPassword });
+        await newUser.save();
+
+        res.status(201).json({ message: "User created successfully" });
+    } catch (error) {
+        console.error("Signup error:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+// Login Route
+app.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Find user by email
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: "User not found" });
+        }
+
+        // Compare passwords
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.status(400).json({ message: "Invalid credentials" });
+        }
+
+        // Generate JWT token
+        const token = jwt.sign({ userId: user._id }, "secretKey", { expiresIn: "1h" });
+
+        res.status(200).json({ message: "Login successful", token });
+    } catch (error) {
+        console.error("Login error:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+// Start server
 app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
+    console.log(`Server running on port ${port}`);
 });

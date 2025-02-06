@@ -68,6 +68,29 @@
     padding: 30px 15%;
     background-color: #EFF0D1;
   }
+  .first h1{
+    font-size: 50px;
+  }
+  .first {
+    text-align: center;
+    margin: 20px 60px;
+    padding:20px;
+    height: 70vh;
+  }
+  .first p{
+    
+    text-align: center;
+    font-size: 30px;
+    }
+    marquee{
+      font-size: 20px;
+      color: red;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+  a{
+    text-decoration: none;
+  }
   
   .row{
     display: flex;

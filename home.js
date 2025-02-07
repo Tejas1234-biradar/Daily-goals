@@ -44,9 +44,9 @@ $(document).ready(function () {
             // Clear input fields after success
             $("#signup")[0].reset(); // Reset the form
         } catch (error) {
-            console.error("Request failed:", error);
+            // console.error("Request failed:", error);
              const errorData = error.responseJSON;
-             alert(errorData.message || "Signup failed. Try again.");
+            //  alert(errorData.message || "Signup failed. Try again.");
            // alert("Could not connect to the server. Check your backend.");
         }
     });
